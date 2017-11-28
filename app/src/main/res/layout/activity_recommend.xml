@@ -1,9 +1,103 @@
 <?xml version="1.0" encoding="utf-8"?>
-<android.support.constraint.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     tools:context="text.bwie.mabiao.kuangjia.RecommendActivity">
+    <LinearLayout
+        android:id="@+id/ll_yanse"
+        android:background="@color/colorXuanZi"
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/y40"
+        android:orientation="horizontal"
+        >
+        <text.bwie.mabiao.kuangjia.comment.CircleRoundImageView
+            android:id="@+id/img_xcr"
+            android:layout_marginBottom="@dimen/y3"
+            android:layout_marginLeft="@dimen/x10"
+            android:layout_gravity="bottom"
+            android:layout_width="@dimen/x40"
+            android:layout_height="@dimen/y40"
+            android:src="@mipmap/weidenglu"
+            />
+        <TextView
+            android:textColor="@color/colorBaiSe"
+            android:textSize="@dimen/x15"
+            android:id="@+id/tv_title"
+            android:layout_gravity="center"
+            android:gravity="center"
+            android:layout_weight="1"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="123"
+            />
+        <ImageView
+            android:id="@+id/img_bj"
+            android:layout_marginBottom="@dimen/y3"
+            android:layout_marginRight="@dimen/x10"
+            android:layout_gravity="bottom"
+            android:layout_width="@dimen/x20"
+            android:layout_height="@dimen/y20"
+            android:src="@mipmap/bianji"
+            />
+    </LinearLayout>
+    <FrameLayout
+        android:id="@+id/fl"
+        android:layout_below="@id/ll_yanse"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        >
+    </FrameLayout>
+    <LinearLayout
+        android:id="@+id/ll_why"
+        android:layout_marginTop="@dimen/y3"
+        android:layout_alignParentBottom="true"
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/y35"
+        android:orientation="horizontal"
+        >
+        <RadioButton
+            android:textColor="@color/colorWeiXuan"
+            android:gravity="center_horizontal"
+            android:id="@+id/rb_tuijian"
+            android:button="@null"
+            android:drawableTop="@drawable/tuijian"
+            android:layout_width="wrap_content"
+            android:layout_weight="1"
+            android:layout_height="wrap_content"
+            android:text="推荐"
+            />
 
-</android.support.constraint.ConstraintLayout>
+        <RadioButton
+            android:textColor="@color/colorWeiXuan"
+            android:gravity="center_horizontal"
+            android:id="@+id/rb_duanzi"
+            android:button="@null"
+            android:drawableTop="@drawable/duanzi"
+            android:layout_width="wrap_content"
+            android:layout_weight="1"
+            android:layout_height="wrap_content"
+            android:text="段子"
+            />
+        <RadioButton
+            android:textColor="@color/colorWeiXuan"
+            android:gravity="center_horizontal"
+            android:id="@+id/rb_shipin"
+            android:button="@null"
+            android:drawableTop="@drawable/shipin"
+            android:layout_width="wrap_content"
+            android:layout_weight="1"
+            android:layout_height="wrap_content"
+            android:text="视频"
+            />
+    </LinearLayout>
+    <View
+        android:background="@color/colorWeiXuan"
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/y1"
+        android:layout_above="@+id/ll_why"
+        ></View>
+
+
+</RelativeLayout>

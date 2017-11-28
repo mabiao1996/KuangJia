@@ -3,9 +3,11 @@ package text.bwie.mabiao.kuangjia.base;
 import android.app.Activity;
 import android.content.Intent;
 import android.content.Loader;
+import android.os.Build;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.v7.app.AppCompatActivity;
+import android.view.WindowManager;
 import android.widget.Toast;
 
 /**
@@ -16,16 +18,22 @@ public abstract class BaseActivity<P extends BasePresenter> extends AppCompatAct
     public P presenter;
     public abstract P initPresenter();
     public abstract int getLayouid();
+    public abstract void init(Bundle savedInstanceState);
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
          setContentView(getLayouid());
-         presenter=initPresenter();
+        if(Build.VERSION.SDK_INT >= Build.VERSION_CODES.KITKAT) {
+            //透明状态栏
+            getWindow().addFlags(WindowManager.LayoutParams.FLAG_TRANSLUCENT_STATUS);
+            //透明导航栏
+            getWindow().addFlags(WindowManager.LayoutParams.FLAG_TRANSLUCENT_NAVIGATION);
+        }
+        presenter=initPresenter();
          initView();
          initData();
-
+         init(savedInstanceState);
     }
-
     /**
      * 页面跳转
      * @param tClass
@@ -38,17 +46,6 @@ public abstract class BaseActivity<P extends BasePresenter> extends AppCompatAct
            }
            startActivity(intent);
     }
-    //防止内存泄漏
-    private boolean mFlag;
-    @Override
-    protected void onResume() {
-        super.onResume();
-        //记住当前的BaseActivity
-        if(mFlag){
-            initData();
-            mFlag=false;
-        }
-    }
     /**
      * 吐司
      * @param s
@@ -60,7 +57,9 @@ public abstract class BaseActivity<P extends BasePresenter> extends AppCompatAct
     @Override
     protected void onDestroy() {
         super.onDestroy();
-        presenter.deatach();
+        if(presenter!=null){
+            presenter.deatach();
+        }
     }
     public abstract void initView();
     public abstract void initData();

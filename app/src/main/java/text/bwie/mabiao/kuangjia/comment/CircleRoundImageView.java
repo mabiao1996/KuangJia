@@ -1,5 +1,6 @@
-package com.kson.circle;
+package text.bwie.mabiao.kuangjia.comment;
 
+import android.annotation.SuppressLint;
 import android.content.Context;
 import android.content.res.TypedArray;
 import android.graphics.Bitmap;
@@ -15,12 +16,15 @@ import android.graphics.drawable.Drawable;
 import android.util.AttributeSet;
 import android.widget.ImageView;
 
+import text.bwie.mabiao.kuangjia.R;
+
 /**
  * Author:kson
  * E-mail:19655910@qq.com
  * Time:2017/09/27
  * Description:
  */
+@SuppressLint("AppCompatCustomView")
 public class CircleRoundImageView extends ImageView{
 
     private Paint mPaint;

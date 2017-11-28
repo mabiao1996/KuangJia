@@ -5,4 +5,10 @@ package text.bwie.mabiao.kuangjia.myretrofit;
  */
 
 public class BaseRequest {
+    public String msg;
+    public String code;
+
+
+
+
 }
