@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+    <text.bwie.mabiao.kuangjia.comment.TitleBar
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/y40"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentStart="true"
+        android:layout_alignParentTop="true"
+        app:title_bg="@color/colorXuanZi"
+        app:title_text="推荐"
+        app:title_text_color="@color/colorBaiSe">
+    </text.bwie.mabiao.kuangjia.comment.TitleBar>
+
+
+</RelativeLayout>
