@@ -22,6 +22,7 @@ allprojects {
             url "http://mvn.gt.igexin.com/nexus/content/repositories/releases/"
         }
         mavenCentral()
+        maven { url 'https://jitpack.io' }
     }
 
 }

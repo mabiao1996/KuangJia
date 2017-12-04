@@ -5,4 +5,61 @@ package text.bwie.mabiao.kuangjia.bean;
  */
 
 public class HuoQuBean {
+
+
+    /**
+     * msg : 获取用户信息成功
+     * code : 0
+     * data : {"age":null,"appkey":null,"appsecret":null,"createtime":"2017-11-29T19:30:57","email":null,"fans":0,"follow":0,"gender":0,"icon":"https://www.zhaoapi.cn/images/129.jpg","latitude":null,"longitude":null,"mobile":"13803814923","money":0,"nickname":"若水","password":"123456","praiseNum":null,"token":"4E6C5F55324B82C686ABC24149001343","uid":129,"userId":null,"username":"13803814923"}
+     */
+
+    public String msg;
+    public String code;
+    public DataBean data;
+
+    public static class DataBean {
+        /**
+         * age : null
+         * appkey : null
+         * appsecret : null
+         * createtime : 2017-11-29T19:30:57
+         * email : null
+         * fans : 0
+         * follow : 0
+         * gender : 0
+         * icon : https://www.zhaoapi.cn/images/129.jpg
+         * latitude : null
+         * longitude : null
+         * mobile : 13803814923
+         * money : 0
+         * nickname : 若水
+         * password : 123456
+         * praiseNum : null
+         * token : 4E6C5F55324B82C686ABC24149001343
+         * uid : 129
+         * userId : null
+         * username : 13803814923
+         */
+
+        public Object age;
+        public Object appkey;
+        public Object appsecret;
+        public String createtime;
+        public Object email;
+        public int fans;
+        public int follow;
+        public int gender;
+        public String icon;
+        public Object latitude;
+        public Object longitude;
+        public String mobile;
+        public int money;
+        public String nickname;
+        public String password;
+        public Object praiseNum;
+        public String token;
+        public int uid;
+        public Object userId;
+        public String username;
+    }
 }

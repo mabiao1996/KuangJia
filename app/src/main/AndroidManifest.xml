@@ -2,8 +2,11 @@
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     package="text.bwie.mabiao.kuangjia">
 
-    <uses-sdk android:minSdkVersion="8" />
+    <uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE" />
+    <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" />
+    <uses-permission android:name="android.permission.CAMERA" />
 
+    <uses-sdk android:minSdkVersion="8" />
     <uses-permission android:name="android.permission.READ_PHONE_STATE" />
     <uses-permission android:name="android.permission.INTERNET" />
     <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
@@ -21,7 +24,6 @@
     <uses-permission android:name="android.permission.ACCESS_WIFI_STATE" />
     <uses-permission android:name="android.permission.INTERNET" />
     <uses-permission android:name="android.permission.READ_PHONE_STATE" />
-    <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" />
     <uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE" />
 
     <application
@@ -54,7 +56,15 @@
             android:name="UMENG_CHANNEL"
             android:value="Wandoujia" />
 
-        <activity android:name=".RecommendActivity"></activity>
+        <activity android:name=".RecommendActivity" />
+        <activity android:name=".LoginActivity" />
+        <activity android:name=".ImportActivity" />
+        <activity android:name=".SheZhiActivity" />
+        <activity android:name=".RegisterActivity" />
+        <activity android:name=".ForgetActivity" />
+        <activity android:name=".GengGaiActivity" />
+        <activity android:name=".BianJiActivity" />
+        <activity android:name=".ShuRuActivity"></activity>
     </application>
 
 </manifest>

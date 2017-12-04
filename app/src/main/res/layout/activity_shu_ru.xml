@@ -1,9 +1,72 @@
 <?xml version="1.0" encoding="utf-8"?>
-<android.support.constraint.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     tools:context="text.bwie.mabiao.kuangjia.ShuRuActivity">
+    <LinearLayout
+        android:id="@+id/ll_yanse"
+        android:background="@color/colorXuanZi"
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/y40"
+        android:orientation="horizontal"
+        >
+        <TextView
+            android:layout_marginLeft="@dimen/x10"
+            android:layout_gravity="center"
+            android:textColor="@color/colorBaiSe"
+            android:textSize="@dimen/x15"
+            android:id="@+id/tv_quxiao"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+             android:text="取消"
+            />
+        <TextView
+            android:textColor="@color/colorBaiSe"
+            android:textSize="@dimen/x15"
+            android:id="@+id/tv_title"
+            android:layout_gravity="center"
+            android:gravity="center"
+            android:layout_weight="1"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="发表文章"
+            />
+        <TextView
+            android:layout_marginRight="@dimen/x10"
+            android:layout_marginLeft="@dimen/x10"
+            android:layout_gravity="center"
+            android:textColor="@color/colorBaiSe"
+            android:textSize="@dimen/x15"
+            android:id="@+id/tv_fabiao"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="发表"
+            />
+    </LinearLayout>
+   <EditText
+       android:layout_margin="@dimen/x10"
+       android:id="@+id/et_bj"
+       android:background="@null"
+       android:gravity="start"
+       android:textColorHint="@color/colorWeiXuan"
+       android:hint="请输入内容，禁止输入色情、暴力等违反国家法律的内容，违者将以封号处理！"
+       android:layout_below="@id/ll_yanse"
+       android:layout_width="match_parent"
+       android:layout_height="@dimen/y100" />
 
-</android.support.constraint.ConstraintLayout>
+
+    <android.support.v7.widget.RecyclerView
+        android:layout_marginLeft="@dimen/x10"
+        android:id="@+id/recycler"
+        android:layout_below="@id/et_bj"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+    </android.support.v7.widget.RecyclerView>
+
+
+
+
+
+</RelativeLayout>

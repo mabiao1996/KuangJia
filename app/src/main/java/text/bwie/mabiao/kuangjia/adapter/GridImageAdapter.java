@@ -1,4 +1,4 @@
-package com.luck.pictureselector.adapter;
+package text.bwie.mabiao.kuangjia.adapter;
 
 import android.content.Context;
 import android.graphics.drawable.Drawable;
@@ -21,11 +21,12 @@ import com.luck.picture.lib.entity.LocalMedia;
 import com.luck.picture.lib.tools.DateUtils;
 import com.luck.picture.lib.tools.DebugUtil;
 import com.luck.picture.lib.tools.StringUtils;
-import com.luck.pictureselector.R;
 
 import java.io.File;
 import java.util.ArrayList;
 import java.util.List;
+
+import text.bwie.mabiao.kuangjia.R;
 
 /**
  * author：luck
@@ -34,8 +35,7 @@ import java.util.List;
  * email：893855882@qq.com
  * data：16/7/27
  */
-public class GridImageAdapter extends
-        RecyclerView.Adapter<GridImageAdapter.ViewHolder> {
+public class GridImageAdapter extends RecyclerView.Adapter<GridImageAdapter.ViewHolder> {
     public static final int TYPE_CAMERA = 1;
     public static final int TYPE_PICTURE = 2;
     private LayoutInflater mInflater;
@@ -120,7 +120,7 @@ public class GridImageAdapter extends
     public void onBindViewHolder(final ViewHolder viewHolder, final int position) {
         //少于8张，显示继续添加的图标
         if (getItemViewType(position) == TYPE_CAMERA) {
-            viewHolder.mImg.setImageResource(R.drawable.addimg_1x);
+            viewHolder.mImg.setImageResource(R.drawable.raw_1500020546);
             viewHolder.mImg.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View v) {

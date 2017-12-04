@@ -3,12 +3,71 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     xmlns:app="http://schemas.android.com/apk/res-auto">
-<android.support.design.widget.TabLayout
-    android:id="@+id/tab"
-    app:tabSelectedTextColor="@color/colorXuanZi"
-    app:tabIndicatorColor="@color/colorXuanZi"
-    android:layout_width="match_parent"
-    android:layout_height="wrap_content">
-</android.support.design.widget.TabLayout>
+    <LinearLayout
+        android:id="@+id/ll_bai"
+        android:background="@color/colorBaiSe"
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/y25"
+        android:orientation="horizontal"
+        >
+
+        <LinearLayout
+            android:id="@+id/ll_remen"
+            android:gravity="center"
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent"
+            android:layout_weight="1"
+            android:orientation="vertical">
+
+            <TextView
+                android:id="@+id/tv_remen"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="热门"
+                android:textColor="@color/colorWeiXuan"
+                android:textSize="@dimen/x16" />
+
+            <View
+                android:layout_marginTop="@dimen/y4"
+                android:id="@+id/v_remen"
+                android:layout_width="@dimen/x80"
+                android:layout_height="@dimen/y3"
+                android:background="@color/colorXuanZi"></View>
+
+        </LinearLayout>
+
+
+    <LinearLayout
+        android:id="@+id/ll_guanzhu"
+        android:layout_weight="1"
+        android:gravity="center"
+        android:layout_width="wrap_content"
+        android:layout_height="match_parent"
+        android:orientation="vertical"
+        >
+        <TextView
+            android:textColor="@color/colorWeiXuan"
+            android:id="@+id/tv_guanzhu"
+            android:textSize="@dimen/x16"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="关注"
+            />
+        <View
+            android:id="@+id/v_guanzhu"
+            android:visibility="invisible"
+            android:layout_marginTop="@dimen/y4"
+            android:layout_width="@dimen/x80"
+            android:layout_height="@dimen/y3"
+            android:background="@color/colorXuanZi"
+            ></View>
+    </LinearLayout>
+    </LinearLayout>
+    <FrameLayout
+        android:id="@+id/fl_re"
+        android:layout_below="@id/ll_bai"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+    </FrameLayout>
 
 </RelativeLayout>

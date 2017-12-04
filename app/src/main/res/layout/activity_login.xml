@@ -1,9 +1,92 @@
 <?xml version="1.0" encoding="utf-8"?>
-<android.support.constraint.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<RelativeLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     tools:context="text.bwie.mabiao.kuangjia.LoginActivity">
+    <ImageView
+        android:scaleType="fitXY"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:src="@mipmap/raw_1500974494"
+        />
+    <ImageView
+        android:id="@+id/iv_t"
+        android:layout_marginTop="@dimen/y15"
+        android:layout_marginLeft="@dimen/x15"
+        android:layout_width="@dimen/x30"
+        android:layout_height="@dimen/y30"
+        android:src="@mipmap/xiaoyuhao"
+        />
+    <ImageView
+        android:layout_marginTop="@dimen/y50"
+        android:layout_centerHorizontal="true"
+        android:layout_width="@dimen/x70"
+        android:layout_height="@dimen/y70"
+        android:src="@mipmap/logo"
+        />
+<LinearLayout
+    android:gravity="center"
+    android:layout_alignParentBottom="true"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:orientation="vertical"
+    >
+    <LinearLayout
+        android:gravity="center"
+        android:background="@drawable/yuanjiaow"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content">
+        <ImageView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:src="@mipmap/wx"
+            />
+        <TextView
+            android:layout_marginLeft="@dimen/x10"
+            android:textSize="@dimen/x14"
+            android:textColor="@color/colorBaiSe"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="微信登录"
+            />
+    </LinearLayout>
+ <LinearLayout
+     android:layout_marginTop="@dimen/y5"
+     android:gravity="center"
+     android:background="@drawable/yuanjiao"
+     android:layout_width="wrap_content"
+     android:layout_height="wrap_content">
+   <ImageView
+       android:layout_width="wrap_content"
+       android:layout_height="wrap_content"
+       android:src="@mipmap/xiaoqie"
+       />
+     <TextView
+         android:layout_marginLeft="@dimen/x10"
+         android:textSize="@dimen/x14"
+         android:textColor="@color/colorBaiSe"
+         android:layout_width="wrap_content"
+         android:layout_height="wrap_content"
+         android:text="QQ登录"
+         />
+ </LinearLayout>
+    <TextView
+        android:id="@+id/tv_login"
+        android:layout_marginBottom="@dimen/y20"
+        android:layout_marginTop="@dimen/y10"
+        android:textColor="@color/colorWeiXuan"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="其他方式登录"
+        />
+</LinearLayout>
 
-</android.support.constraint.ConstraintLayout>
+
+
+
+
+
+</RelativeLayout>

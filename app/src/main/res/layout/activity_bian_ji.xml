@@ -1,9 +1,63 @@
 <?xml version="1.0" encoding="utf-8"?>
-<android.support.constraint.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     tools:context="text.bwie.mabiao.kuangjia.BianJiActivity">
+    <ImageView
+        android:scaleType="fitXY"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:src="@mipmap/raw_1500866926"
+        />
+    <LinearLayout
+        android:id="@+id/ll_video"
+        android:gravity="center"
+        android:layout_marginTop="@dimen/y60"
+        android:layout_centerHorizontal="true"
+        android:background="@drawable/yuan"
+        android:layout_width="120dp"
+        android:layout_height="120dp"
+        android:orientation="vertical"
+        >
+        <ImageView
+            android:layout_width="@dimen/x50"
+            android:layout_height="wrap_content"
+            android:src="@mipmap/video_img"
+            />
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="视频"
+            />
+    </LinearLayout>
 
-</android.support.constraint.ConstraintLayout>
+    <LinearLayout
+        android:id="@+id/ll_bianji"
+        android:gravity="center"
+        android:layout_below="@id/ll_video"
+        android:layout_marginTop="@dimen/y30"
+        android:layout_centerHorizontal="true"
+        android:background="@drawable/yuan"
+        android:layout_width="120dp"
+        android:layout_height="120dp"
+        android:orientation="vertical"
+        >
+        <ImageView
+            android:layout_width="@dimen/x50"
+            android:layout_height="wrap_content"
+            android:src="@mipmap/writer_img"
+            />
+        <TextView
+            android:layout_marginTop="@dimen/y5"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="段子"
+            />
+    </LinearLayout>
+
+
+
+
+</RelativeLayout>

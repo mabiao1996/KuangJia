@@ -11,25 +11,38 @@ import android.widget.RadioButton;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.bumptech.glide.Glide;
+import com.kson.slidingmenu.SlidingMenu;
+
 import org.w3c.dom.Text;
 
 import text.bwie.mabiao.kuangjia.base.BaseActivity;
 import text.bwie.mabiao.kuangjia.base.BasePresenter;
+import text.bwie.mabiao.kuangjia.bean.HuoQuBean;
 import text.bwie.mabiao.kuangjia.comment.CircleRoundImageView;
 import text.bwie.mabiao.kuangjia.fragment.Fragment1;
 import text.bwie.mabiao.kuangjia.fragment.Fragment2;
 import text.bwie.mabiao.kuangjia.fragment.Fragment3;
+import text.bwie.mabiao.kuangjia.fragment.FragmentLeft;
+import text.bwie.mabiao.kuangjia.presenter.LoginPresenter;
+import text.bwie.mabiao.kuangjia.utils.SPutils;
+import text.bwie.mabiao.kuangjia.view.LoginView;
 
-public class RecommendActivity extends BaseActivity implements View.OnClickListener {
+public class RecommendActivity extends BaseActivity implements View.OnClickListener, LoginView {
     private RadioButton mTuiJian;
     private RadioButton mDuanZi;
     private RadioButton mShiPin;
     private TextView mTitle;
     private CircleRoundImageView mXCR;
     private ImageView mBj;
+    private SlidingMenu slidingMenu;
+    private LoginPresenter loginPresenter;
+    private SPutils sp;
+
     @Override
     public BasePresenter initPresenter() {
-        return null;
+        loginPresenter = new LoginPresenter(this);
+        return loginPresenter;
     }
     @Override
     public int getLayouid() {
@@ -37,14 +50,27 @@ public class RecommendActivity extends BaseActivity implements View.OnClickListe
     }
     @Override
     public void init(Bundle savedInstanceState) {
+        initMenu();
         initDianji();
     }
 
+    private void initMenu() {
+        slidingMenu = new SlidingMenu(this);
+        //添加做菜单
+        slidingMenu.setMenu(R.layout.framentleft);
+         getSupportFragmentManager().beginTransaction().replace(R.id.left_fl,new FragmentLeft()).commit();
+        //设置左滑动
+        slidingMenu.setMode(SlidingMenu.LEFT);
+        //设置滑动的屏幕范围，该设置为边缘区域都可以滑动
+        slidingMenu.setTouchModeAbove(SlidingMenu.TOUCHMODE_NONE);
+        slidingMenu.setBehindOffsetRes(R.dimen.SlidingMenuRes);
+        slidingMenu.attachToActivity(this,SlidingMenu.SLIDING_CONTENT);
+    }
     private void initDianji() {
         mXCR.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Toast.makeText(RecommendActivity.this,"点击",Toast.LENGTH_SHORT).show();
+              slidingMenu.showMenu();
             }
         });
     }
@@ -57,10 +83,17 @@ public class RecommendActivity extends BaseActivity implements View.OnClickListe
         mTitle = findViewById(R.id.tv_title);
         mXCR = findViewById(R.id.img_xcr);
         mBj = findViewById(R.id.img_bj);
+        sp = new SPutils("msg");
 
+        mBj.setOnClickListener(this);
         mTuiJian.setOnClickListener(this);
         mDuanZi.setOnClickListener(this);
         mShiPin.setOnClickListener(this);
+        String token = sp.getString("token", null);
+        if(token==null){
+            Glide.with(RecommendActivity.this).load(R.mipmap.weidenglu).into(mXCR);
+        }
+
     }
     @Override
     public void initData() {
@@ -68,7 +101,14 @@ public class RecommendActivity extends BaseActivity implements View.OnClickListe
         mTitle.setText("编辑");
         mTuiJian.setChecked(true);
         mTuiJian.setTextColor(getResources().getColor(R.color.colorXuanZi));
+        int uid = sp.getInt("uid", 0);
+        loginPresenter.huoqu(uid);
     }
+    @Override
+    protected boolean NoTile() {
+        return true;
+    }
+
     @Override
     public void onClick(View v) {
         switch (v.getId()){
@@ -102,7 +142,30 @@ public class RecommendActivity extends BaseActivity implements View.OnClickListe
                 mTuiJian.setTextColor(getResources().getColor(R.color.colorWeiXuan));
                 mShiPin.setTextColor(getResources().getColor(R.color.colorXuanZi));
                 break;
+            case R.id.img_bj:
+                    startActivitys(BianJiActivity.class,null);
+                break;
         }
 
+    }
+    @Override
+    public void showLoading() {
+    }
+    @Override
+    public void hideLoading() {
+    }
+    @Override
+    public void showFailure(String msg) {
+    }
+    @Override
+    public void success(String msg, int uid, String token) {
+    }
+    @Override
+    public void fialure(String msg) {
+    }
+    @Override
+    public void huoqu(HuoQuBean bean) {
+        String icon = bean.data.icon;
+        Glide.with(RecommendActivity.this).load(icon).into(mXCR);
     }
 }

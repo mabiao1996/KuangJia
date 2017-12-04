@@ -59,6 +59,12 @@ h.sendEmptyMessageDelayed(1000,3000);
     @Override
     public void initData() {
     }
+
+    @Override
+    protected boolean NoTile() {
+        return true;
+    }
+
     public void onResume() {
         super.onResume();
         MobclickAgent.onResume(this);
@@ -73,8 +79,7 @@ Handler h=new Handler(){
         super.handleMessage(msg);
         int what = msg.what;
         if(what==1000){
-            Intent intent=new Intent(MainActivity.this,RecommendActivity.class);
-            startActivity(intent);
+            startActivitys(RecommendActivity.class,null);
             finish();
         }
 

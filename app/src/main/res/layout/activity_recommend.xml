@@ -42,19 +42,14 @@
             android:src="@mipmap/bianji"
             />
     </LinearLayout>
-    <FrameLayout
-        android:id="@+id/fl"
-        android:layout_below="@id/ll_yanse"
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        >
-    </FrameLayout>
+
     <LinearLayout
+        android:gravity="center_vertical"
         android:id="@+id/ll_why"
         android:layout_marginTop="@dimen/y3"
         android:layout_alignParentBottom="true"
         android:layout_width="match_parent"
-        android:layout_height="@dimen/y35"
+        android:layout_height="@dimen/y45"
         android:orientation="horizontal"
         >
         <RadioButton
@@ -63,7 +58,7 @@
             android:id="@+id/rb_tuijian"
             android:button="@null"
             android:drawableTop="@drawable/tuijian"
-            android:layout_width="wrap_content"
+            android:layout_width="0dp"
             android:layout_weight="1"
             android:layout_height="wrap_content"
             android:text="推荐"
@@ -75,7 +70,7 @@
             android:id="@+id/rb_duanzi"
             android:button="@null"
             android:drawableTop="@drawable/duanzi"
-            android:layout_width="wrap_content"
+            android:layout_width="0dp"
             android:layout_weight="1"
             android:layout_height="wrap_content"
             android:text="段子"
@@ -86,7 +81,7 @@
             android:id="@+id/rb_shipin"
             android:button="@null"
             android:drawableTop="@drawable/shipin"
-            android:layout_width="wrap_content"
+            android:layout_width="0dp"
             android:layout_weight="1"
             android:layout_height="wrap_content"
             android:text="视频"
@@ -99,5 +94,12 @@
         android:layout_above="@+id/ll_why"
         ></View>
 
-
+    <FrameLayout
+        android:id="@+id/fl"
+        android:layout_above="@id/ll_why"
+        android:layout_below="@id/ll_yanse"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        >
+    </FrameLayout>
 </RelativeLayout>

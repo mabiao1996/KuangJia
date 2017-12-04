@@ -1,5 +1,14 @@
 package text.bwie.mabiao.kuangjia.myretrofit;
 
+import android.util.Log;
+
+import com.google.gson.Gson;
+
+import org.json.JSONException;
+import org.json.JSONObject;
+
+import java.io.File;
+import java.io.IOException;
 import java.security.SecureRandom;
 import java.security.cert.CertificateException;
 import java.security.cert.X509Certificate;
@@ -16,12 +25,21 @@ import javax.net.ssl.X509TrustManager;
 import io.reactivex.Observable;
 import io.reactivex.Observer;
 import io.reactivex.android.schedulers.AndroidSchedulers;
+import io.reactivex.disposables.Disposable;
 import io.reactivex.functions.Consumer;
 import io.reactivex.schedulers.Schedulers;
+import okhttp3.MediaType;
+import okhttp3.MultipartBody;
 import okhttp3.OkHttpClient;
+import okhttp3.RequestBody;
+import okhttp3.ResponseBody;
 import retrofit2.Retrofit;
 import retrofit2.adapter.rxjava2.RxJava2CallAdapterFactory;
 import retrofit2.converter.gson.GsonConverterFactory;
+import retrofit2.converter.scalars.ScalarsConverterFactory;
+import text.bwie.mabiao.kuangjia.api.Myapi;
+
+import static android.os.AsyncTask.execute;
 
 /**
  * Created by mabiao on 2017/11/24.
@@ -31,8 +49,12 @@ public class RetrofitFactory
 {
     public volatile static RetrofitFactory retrofitFactory;
     private final Retrofit retrofit;
+    private final Gson gson;
+    private APIFunction apiFunction;
+    private ApiService apiService;
 
     private RetrofitFactory (){
+        gson = new Gson();
              OkHttpClient httpClient=new OkHttpClient.Builder()
                      .addInterceptor(new LogInterceptor())
                      .sslSocketFactory(createSSLSocketFactory())
@@ -43,29 +65,95 @@ public class RetrofitFactory
                      .retryOnConnectionFailure(false)
                      .build();
         retrofit = new Retrofit.Builder()
-                .baseUrl("")
+                .baseUrl(Myapi.QIANURL)
                 .addConverterFactory(GsonConverterFactory.create())
                 .addCallAdapterFactory(RxJava2CallAdapterFactory.create())
-                .client(httpClient)
+                 .client(httpClient)
                 .build();
          }
-   public void request(String path, Map<String,String> map, Consumer<BaseRequest> consumer)
-   {
-       APIFunction apiFunction = retrofit.create(APIFunction.class);
-       Observable<BaseRequest> request = apiFunction.getRequest(path, map);
-       request.subscribeOn(Schedulers.io())
-               .observeOn(AndroidSchedulers.mainThread())
-               .subscribe(consumer);
+         public RetrofitFactory createBaseApi(){
+             apiFunction = create(APIFunction.class);
+             return this;
+         }
+         public RetrofitFactory createServiceApi(){
+             apiService = create(ApiService.class);
+             return this;
+         }
 
-   }
-    public void request(String path, Map<String,String> map, Observer<BaseRequest> observer)
-    {
-        APIFunction apiFunction = retrofit.create(APIFunction.class);
-        Observable<BaseRequest> request = apiFunction.getRequest(path, map);
-        request.subscribeOn(Schedulers.io())
-                .observeOn(AndroidSchedulers.mainThread())
-                .subscribe(observer);
+
+    public <T> T create(final Class<T> service1){
+        if(service1==null){
+            throw new RuntimeException("service为空!!!");
+        }
+        return retrofit.create(service1);
     }
+    public void requestData(String url, Map<String,String> map, final ResultCallback callback)
+    {
+        Observable<ResponseBody> baseRequestObservable=apiFunction.getRequest(url,map);
+        baseRequestObservable.subscribeOn(Schedulers.io()).observeOn(AndroidSchedulers.mainThread())
+                .subscribe(new Observer<ResponseBody>() {
+                    @Override
+                    public void onSubscribe(Disposable d) {
+                    }
+                    @Override
+                    public void onNext(ResponseBody body) {
+                        try {
+                            String string=body.string();
+                            try {
+                                JSONObject jsonObject=new JSONObject(string);
+                                String code = jsonObject.getString("code");
+                                if(code.equals("2")){
+                                    callback.onTokenFail();
+                                }else if(code.equals("0")){
+                                    Object o = gson.fromJson(string, callback.type);
+                                    callback.onNext(body,o);
+                                }
+                            } catch (JSONException e) {
+                                e.printStackTrace();
+                            }
+                        } catch (IOException e) {
+                            e.printStackTrace();
+                        }
+                    }
+                    @Override
+                    public void onError(Throwable e) {
+                        Log.e("错误：",e+"");
+                        callback.onError(e);
+                    }
+                    @Override
+                    public void onComplete() {
+                      callback.onComplete();
+                    }
+                });
+    }
+    /**
+     * --------------------------上传照片------------------------------------------------
+     */
+    public void uploadTou(String path, RequestBody file, final MyCallBack myCallBack){
+        Observable<ResponseBody> upload = apiService.upload(path, file);
+       upload.subscribeOn(Schedulers.io()).observeOn(AndroidSchedulers.mainThread())
+               .subscribe(new Observer<ResponseBody>() {
+                   @Override
+                   public void onSubscribe(Disposable d) {
+                   }
+                   @Override
+                   public void onNext(ResponseBody body) {
+                      myCallBack.onSuccess(body);
+                   }
+
+                   @Override
+                   public void onError(Throwable e) {
+                   myCallBack.onError(e);
+                   }
+
+                   @Override
+                   public void onComplete() {
+
+                   }
+               });
+    }
+
+
     /**
      * 信任所有https的请求的安全证书
      */
@@ -104,8 +192,7 @@ public class RetrofitFactory
 
         return ssfFactory;
     }
-
-         private static RetrofitFactory getInstence()
+         public static RetrofitFactory getInstence()
          {
              if(retrofitFactory==null)
              {

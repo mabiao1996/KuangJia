@@ -5,4 +5,11 @@ package text.bwie.mabiao.kuangjia.bean;
  */
 
 public class FaBuBean {
+    /**
+     * msg : 发布成功
+     * code : 0
+     */
+
+    public String msg;
+    public String code;
 }

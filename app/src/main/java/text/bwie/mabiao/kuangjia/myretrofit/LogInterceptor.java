@@ -1,61 +1,99 @@
 package text.bwie.mabiao.kuangjia.myretrofit;
 
+import android.content.Context;
+import android.content.pm.PackageInfo;
+import android.content.pm.PackageManager;
 import android.util.Log;
 
 import java.io.IOException;
+import java.util.List;
 
 import okhttp3.FormBody;
 import okhttp3.HttpUrl;
 import okhttp3.Interceptor;
 import okhttp3.MediaType;
+import okhttp3.MultipartBody;
 import okhttp3.Request;
 import okhttp3.Response;
 import okhttp3.ResponseBody;
+import text.bwie.mabiao.kuangjia.app.Myapp;
+import text.bwie.mabiao.kuangjia.utils.SPutils;
+import text.bwie.mabiao.kuangjia.utils.VersionUtils;
 
 /**
  * Created by mabiao on 2017/11/24.
  */
 
 public class LogInterceptor implements Interceptor {
-
+public int versionCode;
     public static String TAG = "LogInterceptor";
-
+   SPutils sPutils=new SPutils("msg");
     @Override
     public Response intercept(Chain chain) throws IOException {
         Request request = chain.request();
-        HttpUrl url=request.url()
-                .newBuilder()
-                .addQueryParameter("source","android")
-                .addQueryParameter("appVersion","")
-                .addQueryParameter("token","")
-                .build();
-        long startTime = System.currentTimeMillis();
-        Response response = chain.proceed(chain.request());
-        long endTime = System.currentTimeMillis();
-        long duration=endTime-startTime;
-        MediaType mediaType = response.body().contentType();
-        String content = response.body().string();
-        Log.d(TAG,"\n");
-        Log.d(TAG,"----------Start----------------");
-        Log.d(TAG, "| "+request.toString());
-        String method=request.method();
-        if("POST".equals(method)){
-            StringBuilder sb = new StringBuilder();
+        String token = sPutils.getString("token", null);
+
+        System.out.println(request.method() + "开始添加公共参数222222222"+token);
+//        String token = (String) SharePrefrenceUtils.getData(SharePrefrenceBack.String, "token");
+        try {
+            Context context = Myapp.context;
+            PackageManager pm = context.getPackageManager();
+            PackageInfo pi = pm.getPackageInfo(context.getPackageName(), 0);
+            versionCode = pi.versionCode;
+        } catch (PackageManager.NameNotFoundException e) {
+            e.printStackTrace();
+        }
+
+        HttpUrl url= null;
+        try {
+            url = request.url()
+                    .newBuilder()
+                    .addQueryParameter("source","android")
+                    .addQueryParameter("appVersion",String.valueOf(VersionUtils.getVersoncode()))
+                    .addQueryParameter("token",token)
+                    .build();
+
+        } catch (PackageManager.NameNotFoundException e) {
+            e.printStackTrace();
+        }
+
+
+        if ("POST".equals(request.method())) {
+
+            System.out.println(request.method() + "开始添加公共参数3333333333"+request.body().toString());
             if (request.body() instanceof FormBody) {
+                System.out.println("FormBody开始添加公共参数");
+                FormBody.Builder builder = new FormBody.Builder();
                 FormBody body = (FormBody) request.body();
                 for (int i = 0; i < body.size(); i++) {
-                    sb.append(body.encodedName(i) + "=" + body.encodedValue(i) + ",");
+                    builder.add(body.encodedName(i), body.encodedValue(i));
                 }
-                sb.delete(sb.length() - 1, sb.length());
-                Log.d(TAG, "| RequestParams:{"+sb.toString()+"}");
+
+                body = builder.add("source", "android")
+                        .add("appVersion", String.valueOf(versionCode))
+                        .add("token", token+"")
+                        .build();
+                System.out.println("开始添加公共参数55555" );
+                request = request.newBuilder().post(body).build();
+
+            }
+            else if(request.body() instanceof MultipartBody)
+            {
+                System.out.println("MultipartBody开始添加公共参数");
+                MultipartBody body = (MultipartBody) request.body();
+                MultipartBody.Builder builder=new MultipartBody.Builder().setType(MultipartBody.FORM);
+                builder.addFormDataPart("source","android")
+                        .addFormDataPart("appVersion",versionCode+"")
+                        .addFormDataPart("token",token+"");
+                List<MultipartBody.Part> parts = body.parts();
+                for (MultipartBody.Part part : parts) {
+                    builder.addPart(part);
+                }
+                request=request.newBuilder().post(builder.build()).build();
             }
         }
-        Log.d(TAG, "| URL:"+url);
-        Log.d(TAG, "| Response:" + content);
-        Log.d(TAG,"----------End:"+duration+"毫秒----------");
-        return response.newBuilder()
-                .body(ResponseBody.create(mediaType, content))
-                .build();
+//        System.out.println(chain.proceed(request).body().string()+"==========chain============");
+        return chain.proceed(request);
     }
 
 }

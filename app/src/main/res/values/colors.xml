@@ -6,4 +6,12 @@
     <color name="colorXuanZi">#03A9f4</color>
     <color name="colorWeiXuan">#BFBFBF</color>
     <color name="colorBaiSe">#ffffff</color>
+    <color name="colorHei">#000000</color>
+    <color name="colorLv">#66c058</color>
+    <color name="colorTou">#65A8A8A8</color>
+    <color name="colorHuang">#F7BF6A</color>
+    <color name="colorTui">#fc7265</color>
+    <color name="colorYuan">#E1f587</color>
+    <color name="colorTian">#E51C23</color>
+    <color name="color_f6">#f6f6f6</color>
 </resources>
