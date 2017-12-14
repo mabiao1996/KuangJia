@@ -26,10 +26,12 @@ public class TuPianModel {
             for (LocalMedia localMedia : list) {
                 File file=new File(localMedia.getPath());
                 if(file.exists()){
+                    System.out.println("file++++++++++++++++++++++"+file);
                     builder.addFormDataPart("jokeFiles",file.getName(), RequestBody.create(MediaType.parse("application/octet-stream"),file));
                 }
             }
         }
+
         builder.addFormDataPart("uid",uid);
         builder.addFormDataPart("content",content);
         MultipartBody build=builder.build();

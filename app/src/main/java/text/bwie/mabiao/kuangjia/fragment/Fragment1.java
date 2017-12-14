@@ -51,7 +51,8 @@ public class Fragment1 extends BaseFragment implements View.OnClickListener {
         mLGuanzhu.setOnClickListener(this);
         mTvRemen.setTextColor(getResources().getColor(R.color.colorXuanZi));
         mVRemen.setVisibility(View.VISIBLE);
-        getActivity().getSupportFragmentManager().beginTransaction().replace(R.id.fl_re,new Fragments1()).commit();
+        getChildFragmentManager().beginTransaction().replace(R.id.fl_re,new Fragments1()).commit();
+
 
     }
     protected void initData() {
@@ -67,14 +68,14 @@ public class Fragment1 extends BaseFragment implements View.OnClickListener {
                mVRemen.setVisibility(View.VISIBLE);
                mTvGuanzhu.setTextColor(getResources().getColor(R.color.colorWeiXuan));
                mVGuanzhu.setVisibility(View.INVISIBLE);
-            getChildFragmentManager().beginTransaction().replace(R.id.fl_re,new Fragments1()).commit();
+                getChildFragmentManager().beginTransaction().replace(R.id.fl_re,new Fragments1()).commit();
                break;
            case R.id.ll_guanzhu:
                mTvGuanzhu.setTextColor(getResources().getColor(R.color.colorXuanZi));
                mVGuanzhu.setVisibility(View.VISIBLE);
                mTvRemen.setTextColor(getResources().getColor(R.color.colorWeiXuan));
                mVRemen.setVisibility(View.INVISIBLE);
-               getActivity().getSupportFragmentManager().beginTransaction().replace(R.id.fl_re,new Fragments2()).commit();
+               getChildFragmentManager().beginTransaction().replace(R.id.fl_re,new Fragments2()).commit();
                break;
        }
     }

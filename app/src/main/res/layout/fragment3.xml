@@ -4,6 +4,71 @@
     android:layout_height="match_parent"
     xmlns:app="http://schemas.android.com/apk/res-auto">
 
+    <LinearLayout
+        android:id="@+id/ll_bai"
+        android:background="@color/colorBaiSe"
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/y25"
+        android:orientation="horizontal"
+        >
 
+        <LinearLayout
+            android:id="@+id/video_ll_remen"
+            android:gravity="center"
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent"
+            android:layout_weight="1"
+            android:orientation="vertical">
+
+            <TextView
+                android:id="@+id/video_remen"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="热门"
+                android:textColor="@color/colorWeiXuan"
+                android:textSize="@dimen/x16" />
+
+            <View
+                android:layout_marginTop="@dimen/y4"
+                android:id="@+id/video_v_remen"
+                android:layout_width="@dimen/x80"
+                android:layout_height="@dimen/y3"
+                android:background="@color/colorXuanZi"></View>
+
+        </LinearLayout>
+
+
+        <LinearLayout
+            android:id="@+id/video_ll_fujin"
+            android:layout_weight="1"
+            android:gravity="center"
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent"
+            android:orientation="vertical"
+            >
+            <TextView
+                android:textColor="@color/colorWeiXuan"
+                android:id="@+id/video_fujin"
+                android:textSize="@dimen/x16"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="附近"
+                />
+            <View
+                android:id="@+id/video_v_fujin"
+                android:visibility="invisible"
+                android:layout_marginTop="@dimen/y4"
+                android:layout_width="@dimen/x80"
+                android:layout_height="@dimen/y3"
+                android:background="@color/colorXuanZi"
+                ></View>
+        </LinearLayout>
+    </LinearLayout>
+    <FrameLayout
+        android:id="@+id/video_re"
+        android:layout_below="@id/ll_bai"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+    </FrameLayout>
 
 </RelativeLayout>

@@ -39,7 +39,6 @@ public class ShuRuActivity extends BaseActivity implements View.OnClickListener,
     private TextView mBj;
 
     private SPutils sp;
-    private String token;
     private String uid;
     private RecyclerView mRecy;
     private int maxSelectNum = 9;
@@ -76,6 +75,8 @@ public class ShuRuActivity extends BaseActivity implements View.OnClickListener,
     }
     @Override
     public void initData() {
+
+
         FullyGridLayoutManager manager = new FullyGridLayoutManager(this, 3, GridLayoutManager.VERTICAL, false);
         mRecy.setLayoutManager(manager);
         adapter = new GridImageAdapter(this, onAddPicClickListener);
@@ -193,7 +194,14 @@ public class ShuRuActivity extends BaseActivity implements View.OnClickListener,
              break;
          case R.id.tv_fabiao:
              uid = String.valueOf(sp.getInt("uid", 0));
-             tuPianPresenter.TuPian(ShuRuActivity.this,uid,mBj.getText().toString().trim(),selectList);
+             String token = sp.getString("token", null);
+             if(mBj.getText().toString().equals("")){
+                 getToast("请输入内容");
+             }else if(token==null){
+               getToast("请重新登陆");
+             }else{
+                 tuPianPresenter.TuPian(ShuRuActivity.this,uid,mBj.getText().toString().trim(),selectList);
+             }
              break;
      }
     }
@@ -240,12 +248,12 @@ public class ShuRuActivity extends BaseActivity implements View.OnClickListener,
 
     @Override
     public void Success(ResponseBody value) {
-  getToast("cccccccccccccccccccccccccccccccccccccccccccccccccccccccccc"+value.toString());
+        startActivitys(ChengGongActivity.class,null);
     }
 
     @Override
     public void Error(Throwable e) {
-     getToast("eeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeee");
+     getToast("发表失败请重新发表");
     }
 
     @Override

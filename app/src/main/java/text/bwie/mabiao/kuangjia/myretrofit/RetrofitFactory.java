@@ -28,6 +28,7 @@ import io.reactivex.android.schedulers.AndroidSchedulers;
 import io.reactivex.disposables.Disposable;
 import io.reactivex.functions.Consumer;
 import io.reactivex.schedulers.Schedulers;
+import okhttp3.Cache;
 import okhttp3.MediaType;
 import okhttp3.MultipartBody;
 import okhttp3.OkHttpClient;
@@ -38,6 +39,7 @@ import retrofit2.adapter.rxjava2.RxJava2CallAdapterFactory;
 import retrofit2.converter.gson.GsonConverterFactory;
 import retrofit2.converter.scalars.ScalarsConverterFactory;
 import text.bwie.mabiao.kuangjia.api.Myapi;
+import text.bwie.mabiao.kuangjia.app.Myapp;
 
 import static android.os.AsyncTask.execute;
 
@@ -52,11 +54,13 @@ public class RetrofitFactory
     private final Gson gson;
     private APIFunction apiFunction;
     private ApiService apiService;
-
     private RetrofitFactory (){
         gson = new Gson();
+        File file=new File("mnt/sdcard/biao");
+       Cache cache=new Cache(file,1024*1024);
              OkHttpClient httpClient=new OkHttpClient.Builder()
                      .addInterceptor(new LogInterceptor())
+                     .cache(cache)
                      .sslSocketFactory(createSSLSocketFactory())
                      .hostnameVerifier(new TrustAllHostnameVerifier())
                      .connectTimeout(10, TimeUnit.SECONDS)

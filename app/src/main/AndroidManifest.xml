@@ -2,11 +2,12 @@
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     package="text.bwie.mabiao.kuangjia">
 
+    <uses-sdk android:minSdkVersion="8" />
+
+    <uses-permission android:name="android.permission.WAKE_LOCK" />
     <uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE" />
     <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" />
     <uses-permission android:name="android.permission.CAMERA" />
-
-    <uses-sdk android:minSdkVersion="8" />
     <uses-permission android:name="android.permission.READ_PHONE_STATE" />
     <uses-permission android:name="android.permission.INTERNET" />
     <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
@@ -64,7 +65,11 @@
         <activity android:name=".ForgetActivity" />
         <activity android:name=".GengGaiActivity" />
         <activity android:name=".BianJiActivity" />
-        <activity android:name=".ShuRuActivity"></activity>
+        <activity android:name=".ShuRuActivity" />
+        <activity android:name=".ChengGongActivity" />
+        <activity android:name=".VideoActivity" />
+        <activity android:name=".MiaoShuActivity" />
+        <activity android:name=".VideoBoFangActivity"></activity>
     </application>
 
 </manifest>

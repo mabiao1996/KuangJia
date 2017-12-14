@@ -45,10 +45,12 @@ public class BianJiActivity extends BaseActivity implements View.OnClickListener
     public void onClick(View v) {
         switch (v.getId()){
             case R.id.ll_video:
+                startActivitys(VideoActivity.class,null);
+                finish();
                 break;
-
             case R.id.ll_bianji:
                 startActivitys(ShuRuActivity.class,null);
+                finish();
                 break;
 
         }

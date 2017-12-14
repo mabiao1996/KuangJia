@@ -1,0 +1,115 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:gravity="center_horizontal"
+    android:background="@color/color_DanHui"
+    android:orientation="vertical"
+    tools:context="text.bwie.mabiao.kuangjia.ChengGongActivity">
+
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/y10"
+        android:background="@color/colorXuanZi" />
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="@color/colorXuanZi"
+        android:gravity="center_vertical"
+        android:orientation="horizontal">
+
+        <RadioButton
+            android:id="@+id/success_call_off"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_margin="10dp"
+            android:button="@null"
+            android:drawableLeft="@drawable/iv_back"
+            android:text="返回"
+            android:textColor="@color/colorBaiSe"
+            android:textSize="20sp" />
+    </LinearLayout>
+
+    <ImageView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="@dimen/y20"
+        android:background="@drawable/raw_1500021052" />
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="@dimen/y20"
+        android:text="发表成功，快分享给好友捧场吧~！"
+        android:textColor="@color/colorHei"
+        android:textSize="15sp" />
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="@dimen/y20"
+        android:gravity="center"
+        android:orientation="horizontal">
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_margin="10dp"
+            android:button="@null"
+            android:drawableTop="@drawable/qq"
+            android:gravity="center"
+            android:text="QQ好友"
+            android:textColor="@color/colorHei"
+            android:textSize="15sp" />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_margin="10dp"
+            android:button="@null"
+            android:drawableTop="@drawable/raw_1500022686"
+            android:gravity="center"
+            android:text="QQ空间"
+            android:textColor="@color/colorHei"
+            android:textSize="15sp" />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_margin="10dp"
+            android:button="@null"
+            android:drawableTop="@drawable/raw_1500022317"
+            android:gravity="center"
+            android:text="朋友圈"
+            android:textColor="@color/colorHei"
+            android:textSize="15sp" />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_margin="10dp"
+            android:button="@null"
+            android:drawableTop="@drawable/weixinss"
+            android:gravity="center"
+            android:text="微信"
+            android:textColor="@color/colorHei"
+            android:textSize="15sp" />
+
+    </LinearLayout>
+
+    <Button
+        android:id="@+id/success_return"
+        android:layout_width="@dimen/x300"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="@dimen/y20"
+        android:background="@drawable/dotpubll"
+        android:gravity="center"
+        android:text="前去看看！！"
+        android:textColor="@color/colorBaiSe"
+        android:textSize="15sp" />
+
+
+</LinearLayout>

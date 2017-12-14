@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content">
+    <ImageView
+        android:layout_margin="@dimen/x1"
+        android:id="@+id/video_fragment1_img"
+        android:scaleType="centerCrop"
+        android:layout_width="@dimen/x160"
+        android:layout_height="wrap_content" />
+</RelativeLayout>

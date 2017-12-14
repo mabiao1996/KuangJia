@@ -10,4 +10,9 @@ public class Myapi {
     public static final String HUOQUURL="user/getUserInfo";
     public static final String DUANZIURL="quarter/getJokes";
     public static final String FABUURL="quarter/publishJoke";
+    public static final String LUNBOURL="quarter/getAd";
+    public static final String FASHIPINURL="quarter/publishVideo";
+    public static final String HUOQUSHIPINURL="quarter/getVideos";
+    public static final String REMENVIDEOURL="quarter/getHotVideos";
+
 }

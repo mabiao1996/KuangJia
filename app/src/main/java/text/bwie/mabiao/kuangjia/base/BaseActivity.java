@@ -35,7 +35,7 @@ public abstract class BaseActivity<P extends BasePresenter> extends AppCompatAct
         presenter=initPresenter();
          initView();
          initData();
-         init(savedInstanceState);
+        init(savedInstanceState);
     }
     /**
      * 页面跳转

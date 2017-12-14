@@ -32,7 +32,6 @@ public int versionCode;
     public Response intercept(Chain chain) throws IOException {
         Request request = chain.request();
         String token = sPutils.getString("token", null);
-
         System.out.println(request.method() + "开始添加公共参数222222222"+token);
 //        String token = (String) SharePrefrenceUtils.getData(SharePrefrenceBack.String, "token");
         try {
@@ -43,7 +42,6 @@ public int versionCode;
         } catch (PackageManager.NameNotFoundException e) {
             e.printStackTrace();
         }
-
         HttpUrl url= null;
         try {
             url = request.url()
@@ -56,10 +54,7 @@ public int versionCode;
         } catch (PackageManager.NameNotFoundException e) {
             e.printStackTrace();
         }
-
-
         if ("POST".equals(request.method())) {
-
             System.out.println(request.method() + "开始添加公共参数3333333333"+request.body().toString());
             if (request.body() instanceof FormBody) {
                 System.out.println("FormBody开始添加公共参数");
@@ -68,19 +63,24 @@ public int versionCode;
                 for (int i = 0; i < body.size(); i++) {
                     builder.add(body.encodedName(i), body.encodedValue(i));
                 }
-
                 body = builder.add("source", "android")
                         .add("appVersion", String.valueOf(versionCode))
                         .add("token", token+"")
                         .build();
                 System.out.println("开始添加公共参数55555" );
-                request = request.newBuilder().post(body).build();
-
+                request = request.newBuilder().post(body)
+                        .removeHeader("Pragma")
+                        .removeHeader("Cache-Control")
+                        .header("Cache-Control","max-age="+3600*24*30)
+                        .build();
             }
             else if(request.body() instanceof MultipartBody)
             {
-                System.out.println("MultipartBody开始添加公共参数");
+                System.out.println("MultipartBody开始添加公共参数"+token+request.url());
                 MultipartBody body = (MultipartBody) request.body();
+                List<MultipartBody.Part> parts1 = body.parts();
+
+
                 MultipartBody.Builder builder=new MultipartBody.Builder().setType(MultipartBody.FORM);
                 builder.addFormDataPart("source","android")
                         .addFormDataPart("appVersion",versionCode+"")
@@ -89,7 +89,11 @@ public int versionCode;
                 for (MultipartBody.Part part : parts) {
                     builder.addPart(part);
                 }
-                request=request.newBuilder().post(builder.build()).build();
+                request=request.newBuilder().post(builder.build())
+                        .removeHeader("Pragma")
+                        .removeHeader("Cache-Control")
+                        .header("Cache-Control","max-age="+3600*24*30)
+                        .build();
             }
         }
 //        System.out.println(chain.proceed(request).body().string()+"==========chain============");

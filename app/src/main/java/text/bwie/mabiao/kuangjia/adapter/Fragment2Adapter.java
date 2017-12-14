@@ -41,20 +41,22 @@ public class Fragment2Adapter extends XRecyclerView.Adapter<Fragment2Adapter.MyV
     @Override
     public void onBindViewHolder(MyViewHould holder, int position) {
         DuanZiBean.DataBean dataBean = list.get(position);
-
         RequestOptions options = new RequestOptions();
         options.placeholder(R.mipmap.ic_launcher_round);
         Glide.with(context).load(dataBean.user.icon).apply(options).into(holder.mXcr);
         holder.mMingZi.setText(dataBean.user.nickname);
         holder.mShiJian.setText(dataBean.createTime);
         holder.mContent.setText(dataBean.content);
+
             String imgUrls = (String) dataBean.imgUrls;
-            if(imgUrls!=null&&imgUrls.length()>0)
-            {
+            if(imgUrls!=null&&imgUrls.length()>0) {
+                holder.mRv.setVisibility(View.VISIBLE);
                 String[] split = imgUrls.split("\\|");
-                TuPianadapter tuPianadapter=new TuPianadapter(context,split);
-                holder.mRv.setLayoutManager(new GridLayoutManager(context,3));
+                TuPianadapter tuPianadapter = new TuPianadapter(context, split);
+                holder.mRv.setLayoutManager(new GridLayoutManager(context, 3));
                 holder.mRv.setAdapter(tuPianadapter);
+            }else{
+                holder.mRv.setVisibility(View.GONE);
             }
     }
     @Override
