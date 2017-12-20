@@ -53,7 +53,7 @@ public class ShiPinBean {
         public int wid;
         public Object workDesc;
         public List<?> comments;
-
+        public boolean falg =false;
         public static class UserBean {
             /**
              * age : null

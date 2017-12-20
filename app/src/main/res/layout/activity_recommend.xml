@@ -86,6 +86,17 @@
             android:layout_height="wrap_content"
             android:text="视频"
             />
+        <RadioButton
+            android:textColor="@color/colorWeiXuan"
+            android:gravity="center_horizontal"
+            android:id="@+id/rb_faxian"
+            android:button="@null"
+            android:drawableTop="@drawable/faxian"
+            android:layout_width="0dp"
+            android:layout_weight="1"
+            android:layout_height="wrap_content"
+            android:text="发现"
+            />
     </LinearLayout>
     <View
         android:background="@color/colorWeiXuan"

@@ -47,7 +47,6 @@ public class Fragment2Adapter extends XRecyclerView.Adapter<Fragment2Adapter.MyV
         holder.mMingZi.setText(dataBean.user.nickname);
         holder.mShiJian.setText(dataBean.createTime);
         holder.mContent.setText(dataBean.content);
-
             String imgUrls = (String) dataBean.imgUrls;
             if(imgUrls!=null&&imgUrls.length()>0) {
                 holder.mRv.setVisibility(View.VISIBLE);

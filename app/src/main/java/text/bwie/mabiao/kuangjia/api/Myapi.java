@@ -14,5 +14,7 @@ public class Myapi {
     public static final String FASHIPINURL="quarter/publishVideo";
     public static final String HUOQUSHIPINURL="quarter/getVideos";
     public static final String REMENVIDEOURL="quarter/getHotVideos";
+    public static final String DIANZANURL="quarter/follow";
+    public static final String GUANZHULIEBIAOURL="quarter/getFollowUsers";
 
 }

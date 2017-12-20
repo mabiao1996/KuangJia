@@ -1,0 +1,52 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content">
+
+<text.bwie.mabiao.kuangjia.comment.CircleRoundImageView
+    android:id="@+id/guanzhuliebiao_cr"
+    android:layout_margin="@dimen/x5"
+    android:layout_width="@dimen/x40"
+    android:layout_height="@dimen/y40"
+    />
+    <LinearLayout
+        android:layout_margin="@dimen/x5"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center"
+        android:orientation="vertical"
+        >
+        <TextView
+            android:id="@+id/guanzhuliebiao_name"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="天蝎喝牛奶"
+            android:textColor="@color/colorHei"
+            android:textSize="@dimen/x13"
+            />
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="吃货们快来戳我~!"
+            />
+    </LinearLayout>
+    <LinearLayout
+        android:layout_gravity="center"
+        android:gravity="center"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+        <TextView
+            android:id="@+id/guanzhuliebiao_time"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="2017-08-14 11:52"
+            />
+        <ImageView
+            android:layout_marginLeft="@dimen/x10"
+            android:layout_width="@dimen/x20"
+            android:layout_height="@dimen/y20"
+              android:src="@mipmap/raw_1499943790"
+            />
+    </LinearLayout>
+</LinearLayout>

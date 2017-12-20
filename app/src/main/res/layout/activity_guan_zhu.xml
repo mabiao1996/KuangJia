@@ -1,0 +1,53 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    tools:context="text.bwie.mabiao.kuangjia.GuanZhuActivity">
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="@color/colorXuanZi"
+        android:gravity="center"
+        android:orientation="horizontal">
+
+        <RadioButton
+            android:id="@+id/my_focuson_call_off"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_margin="10dp"
+            android:button="@null"
+            android:drawableLeft="@drawable/iv_back"
+            android:text="返回"
+            android:textColor="@color/colorBaiSe"
+            android:textSize="15sp" />
+
+        <TextView
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_weight="1"
+            android:gravity="center"
+            android:text="我的关注"
+            android:textColor="@color/colorBaiSe"
+            android:textSize="15sp" />
+        <TextView
+            android:id="@+id/my_hot_focuson"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_margin="10dp"
+            android:text="热门关注"
+            android:textColor="@color/colorBaiSe"
+            android:textSize="15sp" />
+    </LinearLayout>
+
+    <com.jcodecraeer.xrecyclerview.XRecyclerView
+        android:id="@+id/my_focuson_recyclerview"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="@color/colorBaiSe"
+        android:layout_marginTop="@dimen/y6"
+        />
+
+</LinearLayout>

@@ -69,7 +69,8 @@
         <activity android:name=".ChengGongActivity" />
         <activity android:name=".VideoActivity" />
         <activity android:name=".MiaoShuActivity" />
-        <activity android:name=".VideoBoFangActivity"></activity>
+        <activity android:name=".VideoBoFangActivity" />
+        <activity android:name=".GuanZhuActivity"></activity>
     </application>
 
 </manifest>

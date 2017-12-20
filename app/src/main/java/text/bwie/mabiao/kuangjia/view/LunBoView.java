@@ -1,5 +1,6 @@
 package text.bwie.mabiao.kuangjia.view;
 
+import text.bwie.mabiao.kuangjia.bean.DianZanBean;
 import text.bwie.mabiao.kuangjia.bean.LunBoTuBean;
 import text.bwie.mabiao.kuangjia.bean.ShiPinBean;
 
@@ -12,4 +13,6 @@ public interface LunBoView extends LoginView {
     void onError(Throwable throwable);
     void shipinchenggong(ShiPinBean shiPinBean);
     void shipinshibai(Throwable throwable);
+    void DianZanChengGong( DianZanBean dianZanBean);
+    void DianZanShiBai(Throwable throwable);
 }

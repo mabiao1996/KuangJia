@@ -91,7 +91,7 @@ public class RetrofitFactory
         }
         return retrofit.create(service1);
     }
-    public void requestData(String url, Map<String,String> map, final ResultCallback callback)
+    public void requestData(String url, final Map<String,String> map, final ResultCallback callback)
     {
         Observable<ResponseBody> baseRequestObservable=apiFunction.getRequest(url,map);
         baseRequestObservable.subscribeOn(Schedulers.io()).observeOn(AndroidSchedulers.mainThread())
@@ -102,15 +102,23 @@ public class RetrofitFactory
                     @Override
                     public void onNext(ResponseBody body) {
                         try {
+
                             String string=body.string();
                             try {
                                 JSONObject jsonObject=new JSONObject(string);
                                 String code = jsonObject.getString("code");
+                                String msg = jsonObject.optString("msg");
+                                System.out.println(code+"throwable============"+msg);
                                 if(code.equals("2")){
                                     callback.onTokenFail();
                                 }else if(code.equals("0")){
                                     Object o = gson.fromJson(string, callback.type);
                                     callback.onNext(body,o);
+                                }
+                                else {
+//                                    String msg = jsonObject.optString("msg");
+                                    System.out.println("throwable============"+msg);
+
                                 }
                             } catch (JSONException e) {
                                 e.printStackTrace();

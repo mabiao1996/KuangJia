@@ -1,12 +1,19 @@
 <?xml version="1.0" encoding="utf-8"?>
-<RelativeLayout
+<android.support.v7.widget.CardView
+    xmlns:card_view="http://schemas.android.com/apk/res-auto"
     xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
-    android:layout_height="wrap_content">
+    android:layout_height="wrap_content"
+    android:layout_margin="8dp"
+    android:id="@+id/cv_item"
+    android:foreground="?android:attr/selectableItemBackground"
+    card_view:cardCornerRadius="4dp"
+    card_view:cardElevation="4dp"
+    >
     <ImageView
         android:layout_margin="@dimen/x1"
         android:id="@+id/video_fragment1_img"
         android:scaleType="centerCrop"
         android:layout_width="@dimen/x160"
         android:layout_height="wrap_content" />
-</RelativeLayout>
+</android.support.v7.widget.CardView>

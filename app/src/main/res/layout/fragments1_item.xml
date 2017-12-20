@@ -46,9 +46,31 @@
         </LinearLayout>
         <RelativeLayout
             android:layout_gravity="center_vertical"
-            android:layout_width="@dimen/x20"
+            android:layout_width="@dimen/x100"
             android:layout_height="@dimen/y20">
             <ImageView
+                android:layout_alignParentRight="true"
+                android:id="@+id/img_xie"
+                android:layout_width="@dimen/x20"
+                android:layout_height="@dimen/y20"
+                android:src="@mipmap/yitaoxie"
+                />
+            <ImageView
+                android:layout_alignParentRight="true"
+                android:id="@+id/img_wei"
+                android:layout_width="@dimen/x20"
+                android:layout_height="@dimen/y20"
+                android:src="@mipmap/yitaowei"
+                />
+            <ImageView
+                android:layout_alignParentRight="true"
+                android:id="@+id/img_lian"
+                android:layout_width="@dimen/x20"
+                android:layout_height="@dimen/y20"
+                android:src="@mipmap/yitaolian"
+                />
+            <ImageView
+                android:layout_alignParentRight="true"
                 android:id="@+id/img_jia"
                 android:layout_width="@dimen/x20"
                 android:layout_height="@dimen/y20"
@@ -71,6 +93,7 @@
     android:layout_width="match_parent"
     android:layout_height="@dimen/y150">
     <ImageView
+        android:scaleType="centerCrop"
         android:id="@+id/img_fengmian"
         android:layout_width="match_parent"
         android:layout_height="match_parent"

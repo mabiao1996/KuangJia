@@ -55,7 +55,6 @@ public class FragmentVideo1 extends BaseFragment implements XRecyclerView.Loadin
     protected void initData() {
         remenVideoPresenter.RemenSHipin(s+"");
     }
-
     /**
      * 上拉下拉
      */
@@ -78,22 +77,15 @@ public class FragmentVideo1 extends BaseFragment implements XRecyclerView.Loadin
         mXrv.refreshComplete();
         mXrv.loadMoreComplete();
     }
-
     @Override
     public void showLoading() {
-
     }
-
     @Override
     public void hideLoading() {
-
     }
-
     @Override
     public void showFailure(String msg) {
-
     }
-
     @Override
     public void RemenChengGong(RemenVidwoBean remenVidwoBean) {
         List<RemenVidwoBean.DataBean> data = remenVidwoBean.data;
@@ -105,26 +97,17 @@ public class FragmentVideo1 extends BaseFragment implements XRecyclerView.Loadin
         }else{
             videoReMenadapter.notifyDataSetChanged();
         }
-
     }
-
     @Override
     public void RemenShiBai(Throwable throwable) {
-
     }
-
     @Override
     public void success(String msg, int uid, String token) {
-
     }
-
     @Override
     public void fialure(String msg) {
-
     }
-
     @Override
     public void huoqu(HuoQuBean bean) {
-
     }
 }

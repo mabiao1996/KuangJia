@@ -25,6 +25,7 @@ import text.bwie.mabiao.kuangjia.R;
 import text.bwie.mabiao.kuangjia.adapter.ReMenAdapter;
 import text.bwie.mabiao.kuangjia.base.BaseFragment;
 import text.bwie.mabiao.kuangjia.base.BasePresenter;
+import text.bwie.mabiao.kuangjia.bean.DianZanBean;
 import text.bwie.mabiao.kuangjia.bean.HuoQuBean;
 import text.bwie.mabiao.kuangjia.bean.LunBoTuBean;
 import text.bwie.mabiao.kuangjia.bean.ShiPinBean;
@@ -37,7 +38,7 @@ import text.bwie.mabiao.kuangjia.view.LunBoView;
  * Created by mabiao on 2017/11/28.
  */
 
-public class Fragments1 extends BaseFragment implements LunBoView, XRecyclerView.LoadingListener {
+public class Fragments1 extends BaseFragment implements LunBoView, XRecyclerView.LoadingListener, ReMenAdapter.DianjiShiJian, ReMenAdapter.getFenXiang {
 
     private XRecyclerView mXrecy;
     private List<String> list;
@@ -69,13 +70,13 @@ public class Fragments1 extends BaseFragment implements LunBoView, XRecyclerView
         mXrecy.addHeaderView(inflate);
         mXrecy.setLoadingListener(this);
         sp = new SPutils("msg");
-
     }
     @Override
     protected void initData() {
         lunBoPresenter.getLunBo();
         uid = sp.getInt("uid", 0);
         lunBoPresenter.FaShiPin(uid +"",1+"",s+"");
+
     }
 
     @Override
@@ -104,7 +105,6 @@ public class Fragments1 extends BaseFragment implements LunBoView, XRecyclerView
                 Glide.with(getActivity()).load(list.get(position)).into((ImageView) view);
             }
         });
-
     }
     @Override
     public void onError(Throwable throwable) {
@@ -118,6 +118,8 @@ public class Fragments1 extends BaseFragment implements LunBoView, XRecyclerView
            reMenAdapter = new ReMenAdapter(getActivity(),l);
            mXrecy.setLayoutManager(new LinearLayoutManager(getActivity()));
            mXrecy.setAdapter(reMenAdapter);
+           reMenAdapter.setDianjiShiJian(this);
+           reMenAdapter.setFenXiang(this);
        
        }else{
            reMenAdapter.notifyDataSetChanged();
@@ -128,6 +130,26 @@ public class Fragments1 extends BaseFragment implements LunBoView, XRecyclerView
         getToast("失败");
     }
 
+    /**
+     * --------------------------点赞---------------------------------
+     * @param dianZanBean
+     */
+    @Override
+    public void DianZanChengGong(DianZanBean dianZanBean) {
+        getToast(dianZanBean.msg);
+    }
+
+    @Override
+    public void DianZanShiBai(Throwable throwable) {
+        getToast(throwable.toString());
+    }
+
+    /**
+     * -----------------------------------------------------------------------------------
+     * @param msg
+     * @param uid
+     * @param token
+     */
     @Override
     public void success(String msg, int uid, String token) {
 
@@ -160,5 +182,15 @@ public class Fragments1 extends BaseFragment implements LunBoView, XRecyclerView
     public void stop(){
         mXrecy.refreshComplete();
         mXrecy.loadMoreComplete();
+    }
+
+    @Override
+    public void DianZan(View v, int position, int uids) {
+        lunBoPresenter.getDian(uid+"",uids+"");
+    }
+
+    @Override
+    public void FenXiang(View v, int position, int uid) {
+
     }
 }

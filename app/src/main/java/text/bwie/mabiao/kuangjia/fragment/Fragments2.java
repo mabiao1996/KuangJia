@@ -23,6 +23,7 @@ import text.bwie.mabiao.kuangjia.R;
 import text.bwie.mabiao.kuangjia.adapter.GuanZhuadapter;
 import text.bwie.mabiao.kuangjia.base.BaseFragment;
 import text.bwie.mabiao.kuangjia.base.BasePresenter;
+import text.bwie.mabiao.kuangjia.bean.DianZanBean;
 import text.bwie.mabiao.kuangjia.bean.HuoQuBean;
 import text.bwie.mabiao.kuangjia.bean.LunBoTuBean;
 import text.bwie.mabiao.kuangjia.bean.ShiPinBean;
@@ -117,6 +118,16 @@ public class Fragments2 extends BaseFragment implements LunBoView {
 
     @Override
     public void shipinshibai(Throwable throwable) {
+
+    }
+
+    @Override
+    public void DianZanChengGong(DianZanBean dianZanBean) {
+
+    }
+
+    @Override
+    public void DianZanShiBai(Throwable throwable) {
 
     }
 

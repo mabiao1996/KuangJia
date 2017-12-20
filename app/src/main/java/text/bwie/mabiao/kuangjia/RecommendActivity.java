@@ -23,6 +23,7 @@ import text.bwie.mabiao.kuangjia.comment.CircleRoundImageView;
 import text.bwie.mabiao.kuangjia.fragment.Fragment1;
 import text.bwie.mabiao.kuangjia.fragment.Fragment2;
 import text.bwie.mabiao.kuangjia.fragment.Fragment3;
+import text.bwie.mabiao.kuangjia.fragment.Fragment4;
 import text.bwie.mabiao.kuangjia.fragment.FragmentLeft;
 import text.bwie.mabiao.kuangjia.presenter.LoginPresenter;
 import text.bwie.mabiao.kuangjia.utils.SPutils;
@@ -38,6 +39,7 @@ public class RecommendActivity extends BaseActivity implements View.OnClickListe
     private SlidingMenu slidingMenu;
     private LoginPresenter loginPresenter;
     private SPutils sp;
+    private RadioButton mFaXian;
 
     @Override
     public BasePresenter initPresenter() {
@@ -80,6 +82,7 @@ public class RecommendActivity extends BaseActivity implements View.OnClickListe
         mTuiJian = findViewById(R.id.rb_tuijian);
         mDuanZi = findViewById(R.id.rb_duanzi);
         mShiPin = findViewById(R.id.rb_shipin);
+        mFaXian = findViewById(R.id.rb_faxian);
         mTitle = findViewById(R.id.tv_title);
         mXCR = findViewById(R.id.img_xcr);
         mBj = findViewById(R.id.img_bj);
@@ -89,6 +92,7 @@ public class RecommendActivity extends BaseActivity implements View.OnClickListe
         mTuiJian.setOnClickListener(this);
         mDuanZi.setOnClickListener(this);
         mShiPin.setOnClickListener(this);
+        mFaXian.setOnClickListener(this);
         String token = sp.getString("token", null);
         if(token==null){
             Glide.with(RecommendActivity.this).load(R.mipmap.weidenglu).into(mXCR);
@@ -118,9 +122,11 @@ public class RecommendActivity extends BaseActivity implements View.OnClickListe
                 mTuiJian.setChecked(true);
                 mDuanZi.setChecked(false);
                 mShiPin.setChecked(false);
+                mFaXian.setChecked(false);
                 mTuiJian.setTextColor(getResources().getColor(R.color.colorXuanZi));
                 mDuanZi.setTextColor(getResources().getColor(R.color.colorWeiXuan));
                 mShiPin.setTextColor(getResources().getColor(R.color.colorWeiXuan));
+                mFaXian.setTextColor(getResources().getColor(R.color.colorWeiXuan));
                 break;
             case R.id.rb_duanzi:
                 getSupportFragmentManager().beginTransaction().replace(R.id.fl,new Fragment2()).commit();
@@ -128,9 +134,11 @@ public class RecommendActivity extends BaseActivity implements View.OnClickListe
                 mTuiJian.setChecked(false);
                 mShiPin.setChecked(false);
                 mDuanZi.setChecked(true);
+                mFaXian.setChecked(false);
                 mDuanZi.setTextColor(getResources().getColor(R.color.colorXuanZi));
                 mTuiJian.setTextColor(getResources().getColor(R.color.colorWeiXuan));
                 mShiPin.setTextColor(getResources().getColor(R.color.colorWeiXuan));
+                mFaXian.setTextColor(getResources().getColor(R.color.colorWeiXuan));
                 break;
             case R.id.rb_shipin:
                 getSupportFragmentManager().beginTransaction().replace(R.id.fl,new Fragment3()).commit();
@@ -138,9 +146,24 @@ public class RecommendActivity extends BaseActivity implements View.OnClickListe
                 mTuiJian.setChecked(false);
                 mShiPin.setChecked(true);
                 mDuanZi.setChecked(false);
+                mFaXian.setChecked(false);
                 mDuanZi.setTextColor(getResources().getColor(R.color.colorWeiXuan));
                 mTuiJian.setTextColor(getResources().getColor(R.color.colorWeiXuan));
                 mShiPin.setTextColor(getResources().getColor(R.color.colorXuanZi));
+                mFaXian.setTextColor(getResources().getColor(R.color.colorWeiXuan));
+                break;
+            case R.id.rb_faxian:
+                getSupportFragmentManager().beginTransaction().replace(R.id.fl,new Fragment4()).commit();
+                mTitle.setText("发现");
+                mTuiJian.setChecked(false);
+                mShiPin.setChecked(false);
+                mDuanZi.setChecked(false);
+                mFaXian.setChecked(true);
+                mDuanZi.setTextColor(getResources().getColor(R.color.colorWeiXuan));
+                mTuiJian.setTextColor(getResources().getColor(R.color.colorWeiXuan));
+                mShiPin.setTextColor(getResources().getColor(R.color.colorWeiXuan));
+                mFaXian.setTextColor(getResources().getColor(R.color.colorXuanZi));
+
                 break;
             case R.id.img_bj:
                     startActivitys(BianJiActivity.class,null);

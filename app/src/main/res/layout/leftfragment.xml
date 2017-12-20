@@ -70,6 +70,7 @@
         android:orientation="vertical"
         >
         <LinearLayout
+            android:id="@+id/left_ll_guanzhu"
             android:clickable="true"
             android:layout_marginRight="@dimen/x20"
             android:layout_marginLeft="@dimen/x20"
